@@ -1,0 +1,57 @@
+GEOVIỆTNAM 2026 — BÁO CÁO KIỂM THỬ V1.3 TOÀN CẢNH VÀ HẢI ĐỒ
+
+KẾT QUẢ TỔNG QUÁT
+- 58/58 phép thử luồng giao diện và dữ liệu đạt.
+- JavaScript nội tuyến và data/vietnam-data.js phân tích cú pháp hợp lệ.
+- 73 ID giao diện, không có ID trùng.
+- Toàn bộ liên kết tài nguyên cục bộ trong index.html đều tồn tại.
+- Gói dữ liệu có đúng 34 đối tượng cấp tỉnh, 34 mã riêng biệt và tổng 3.321 đơn vị cấp xã.
+
+BẢN ĐỒ VÀ DỮ LIỆU
+- Nạp mặc định đủ lớp 34 tỉnh/thành, đường bờ biển khái quát và mốc quốc gia/biển đảo.
+- Nhận diện điểm thử tại Hà Nội đúng “Thành phố Hà Nội”.
+- Hoàng Sa trả về “Đặc khu Hoàng Sa, thành phố Đà Nẵng, Việt Nam”; không dùng kết quả địa chỉ bên ngoài gắn “Trung Quốc”.
+- Trường Sa trả về “Đặc khu Trường Sa, tỉnh Khánh Hòa, Việt Nam”.
+- Đã loại bỏ hoàn toàn lớp che hình chữ nhật cũ.
+- Ở chế độ toàn cảnh và mức thu nhỏ, lớp nền bên ngoài được giữ nguyên; hai nhãn Hoàng Sa và Trường Sa bằng tiếng Việt được hiển thị ở dạng gọn trên bản đồ.
+- Cả bốn lựa chọn Đường phố, Ảnh vệ tinh, Địa hình và Địa hình tổng hợp đều đạt kiểm thử hiển thị rõ khi xem toàn cảnh.
+- Khi chọn trực tiếp Hoàng Sa/Trường Sa hoặc đưa tâm bản đồ vào vùng đảo từ mức thu phóng 6, lớp nền bên ngoài được đặt độ trong suốt tuyệt đối và hải đồ vector cục bộ được bật.
+- Cơ chế chặn nền ngoài khi xem chi tiết đạt kiểm thử riêng với cả bốn lựa chọn nền.
+- Vùng đảo chỉ nằm ở rìa khung nhìn không còn làm tắt toàn bộ nền; nhãn tiếng Việt tổng quan vẫn được giữ phía trên.
+- Hải đồ cục bộ hiển thị nền biển liền mạch, lưới tọa độ, ký hiệu đảo san hô, cờ Việt Nam và tên hành chính tiếng Việt; không sử dụng nhãn hoặc đường ranh từ nhà cung cấp nền.
+- Khi trở về đất liền hoặc chọn “Cả nước”, lớp nền được chọn và bảng thông tin đất liền được khôi phục tự động; không còn nội dung biển đảo lưu sai ngữ cảnh.
+- Nút “Mở không gian biển đảo” mở đúng mức toàn cảnh có nền rõ và hiển thị đủ thông tin hai đặc khu.
+- Lớp đường bờ biển bật, tắt và bật lại đúng trạng thái.
+- Bản đồ vẫn giữ dữ liệu ranh giới và công cụ đo cục bộ khi lớp nền trực tuyến không tải được.
+
+CÔNG CỤ ĐO VÀ GHIM
+- Đặt được hai mốc A/B; cả hai mốc đều có thể kéo.
+- Hiển thị đồng thời kilômét, hải lý (NM), góc phương vị và hướng chính.
+- Kéo mốc cập nhật tức thời đường nối, nhãn trên bản đồ và bảng kết quả.
+- Quy đổi kiểm tra: 1 NM = 1,852 km.
+- Công cụ hướng hai điểm và công cụ ghim hoạt động độc lập; thao tác xóa dọn đúng dấu đo hiện tại.
+
+NỘI DUNG HỌC TẬP
+- GeoLab hiển thị đủ 4 nhóm: 28 tỉnh, 6 thành phố trực thuộc trung ương, 23 đơn vị hình thành sau sắp xếp và 11 đơn vị không thực hiện sắp xếp.
+- Bộ lọc GeoLab và lưu nhận xét hoạt động.
+- Hồ sơ “Việt Nam 2045” lưu và đánh giá đủ 5 bước.
+- Hai đề luyện tập dựng câu hỏi, lưu đáp án và chấm phần trắc nghiệm.
+- Ghi chú bản đồ, mã học sinh, tiến độ và nhật kí được ghi vào bộ nhớ trình duyệt.
+
+CHẾ ĐỘ GIÁO VIÊN
+- Mật khẩu đã cấu hình mở đúng bảng giáo viên.
+- Bảng theo dõi đọc được bài làm, ghi chú, điểm, tiến độ và luồng thao tác của phiên hiện tại.
+- Luồng xuất hồ sơ JSON, nhập hồ sơ học sinh và xuất CSV đã được đối chiếu cấu trúc dữ liệu.
+- Dữ liệu không tự gửi ra ngoài; GitHub Pages không tự đồng bộ nhiều thiết bị nếu chưa có máy chủ/cơ sở dữ liệu.
+
+GIAO DIỆN VÀ ĐÓNG GÓI
+- Logo cờ Việt Nam, atlas 34 tỉnh/thành và hình Trái Đất đều là tài nguyên cục bộ.
+- Trái Đất có chuyển động lặp bằng CSS; có xử lý prefers-reduced-motion.
+- Tiêu đề có khoảng cách dòng riêng, bỏ dấu gạch ngang sau “bản đồ” và bỏ hoàn toàn nhãn khẩu hiệu cũ.
+- Các tiêu đề trang/khối chính được căn giữa; nút hạn chế ngắt dòng vô lý.
+- CSS có bố cục thích ứng cho desktop, máy tính bảng, điện thoại và chế độ toàn màn hình bản đồ.
+- Các tài nguyên Đà Nẵng cũ không còn trong gói; Đà Nẵng chỉ còn xuất hiện với tư cách một trong 34 đơn vị và trong tên hành chính chính thức của Đặc khu Hoàng Sa.
+
+LƯU Ý VẬN HÀNH
+- Lớp nền OpenStreetMap/Esri/OpenTopoMap và địa chỉ chi tiết cần Internet; phần ranh giới, atlas, nội dung học tập và phép đo vẫn dùng được từ tệp cục bộ.
+- Hình học ranh giới và đường bờ biển được giản lược để hiển thị giáo dục mượt; không dùng cho đo đạc địa chính, dẫn đường hoặc xác lập ranh giới pháp lý.

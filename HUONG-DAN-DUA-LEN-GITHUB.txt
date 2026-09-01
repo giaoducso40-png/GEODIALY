@@ -1,0 +1,14 @@
+GÓI GEOATLAS VIỆT NAM 2026
+
+1. Giải nén toàn bộ gói ZIP.
+2. Tải TOÀN BỘ nội dung bên trong lên thư mục gốc của kho GitHub.
+3. Giữ nguyên cấu trúc:
+   - index.html
+   - assets/
+   - GeoDaNang/
+   - GeoVietNam/
+4. Trong GitHub, vào Settings > Pages.
+5. Chọn Deploy from a branch, nhánh main, thư mục /(root), rồi bấm Save.
+
+Lưu ý: không đổi tên hai thư mục GeoDaNang và GeoVietNam vì trang tổng đang dùng
+đường dẫn tương đối tới đúng hai thư mục này.

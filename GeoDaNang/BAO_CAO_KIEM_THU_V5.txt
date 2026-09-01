@@ -1,0 +1,24 @@
+GEODÀNẴNG 2026 — BÁO CÁO KIỂM THỬ BẢN V5.3 TOÀN CẢNH VÀ HẢI ĐỒ
+
+PHẠM VI ĐÃ KIỂM
+- 53/53 phép thử luồng giao diện, dữ liệu và bản đồ đạt.
+- Cú pháp JavaScript nội tuyến: hợp lệ.
+- 73 ID giao diện: không trùng.
+- 14 liên kết tài nguyên cục bộ: đầy đủ.
+- Dữ liệu địa giới: nạp đủ 94 đơn vị cấp xã; phép xác định vùng từ tọa độ hoạt động.
+- Mật khẩu giáo viên: chấp nhận đúng admin@ và từ chối chuỗi sai.
+- Luồng lưu tiến độ, bài làm, ghi chú, nhật kí, xuất JSON, nhập hồ sơ và xuất CSV: đã đối chiếu mã và dữ liệu đầu vào/đầu ra.
+- Ghim bản đồ: hiển thị tọa độ, tên địa giới cục bộ, tra cứu địa chỉ trực tuyến, kéo để cập nhật và mở lại khi bấm kim.
+- Ghim Hoàng Sa trả đúng “Đặc khu Hoàng Sa, thành phố Đà Nẵng, Việt Nam”; ghim Trường Sa trả đúng “Đặc khu Trường Sa, tỉnh Khánh Hòa, Việt Nam”; không nhận nhãn “Trung Quốc” từ dịch vụ ngoài.
+- Toàn cảnh và mức thu nhỏ giữ nguyên lớp nền; hai nhãn Hoàng Sa, Trường Sa bằng tiếng Việt hiển thị ở dạng gọn.
+- Cả bốn nền Đường phố, Ảnh vệ tinh, Địa hình và Địa hình tổng hợp đều hiển thị đúng khi xem toàn cảnh.
+- Khi xem chi tiết Hoàng Sa hoặc Trường Sa từ mức thu phóng 6, lớp nền ngoài được tắt và hải đồ vector cục bộ được bật; cả bốn lựa chọn nền đều đạt kiểm thử chặn nhãn ngoài.
+- Nút “Mở không gian biển đảo” mở toàn cảnh có nền rõ và đủ hai đặc khu; nút “Đất liền” khôi phục nền cùng bảng thông tin đúng ngữ cảnh.
+- Không có lớp che hình chữ nhật; hải đồ dùng nền liền mạch, lưới tọa độ, ký hiệu đảo và nhãn cờ Việt Nam.
+- Tệp index, Leaflet, dữ liệu, ảnh quả địa cầu, ảnh địa danh và biểu trưng Cầu Rồng: có mặt trong gói.
+- CSS responsive: tiêu đề chia dòng có chủ ý, nút không ngắt dòng tùy tiện, bố cục giáo viên co về hai cột trên điện thoại, hiệu ứng tắt theo prefers-reduced-motion.
+
+LƯU Ý VẬN HÀNH
+- GitHub Pages chỉ lưu tệp web, không phải cơ sở dữ liệu. Nhật kí của mỗi học sinh nằm trên trình duyệt của học sinh đó cho đến khi xuất hồ sơ JSON.
+- Giáo viên có thể nhập nhiều hồ sơ JSON để tổng hợp. Theo dõi tự động nhiều thiết bị theo thời gian thực cần một máy chủ/cơ sở dữ liệu có xác thực riêng.
+- Lớp nền bản đồ và địa chỉ chi tiết cần Internet. Ranh giới 94 đơn vị, ảnh và chức năng học tập cốt lõi đã được đóng gói cục bộ.
