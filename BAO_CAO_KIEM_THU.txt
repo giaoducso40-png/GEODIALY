@@ -1,0 +1,33 @@
+BÁO CÁO KIỂM THỬ GEOATLAS 2026
+===============================
+
+Phiên bản v4: trang tổng vừa một màn hình, không chồng lấn, không thanh cuộn và tối ưu theo cả chiều rộng lẫn chiều cao; hai Geo thành phần được giữ nguyên byte theo byte từ bản v3.
+
+Thành phần:
+- Trang chọn chung GeoAtlas 2026.
+- GeoĐàNẵng v5.3 - Toàn cảnh và Hải đảo.
+- GeoViệtNam v1.3 - Toàn cảnh và Hải đồ.
+
+Phạm vi kiểm tra:
+- Cấu trúc thư mục dùng cho GitHub Pages.
+- Hai liên kết mở đúng ứng dụng.
+- Tài nguyên của trang chọn chung đều là tệp cục bộ.
+- Không trùng ID và không thiếu tệp được tham chiếu.
+- Bố cục đáp ứng desktop, máy tính bảng, điện thoại và màn hình desktop có chiều cao thấp.
+- Địa cầu, tiêu đề và hai nút nằm trong các vùng bố cục tách biệt; nhãn nổi gây che đã được ẩn.
+- Tiêu đề và mô tả giữ trên một hàng ở desktop; hai nút xếp một cột trên mobile.
+- Trang tổng khóa đúng 100% chiều cao khung nhìn và không phát sinh thanh cuộn.
+- Có phương án giảm chuyển động theo thiết lập hệ điều hành.
+- Giữ nguyên các chức năng và dữ liệu ngoài phạm vi chỉnh sửa.
+- Kiểm tra bốn lớp nền ở mức phóng sâu đến 19.
+- Kiểm tra tự chuyển sang nền không nhãn tại Hoàng Sa và Trường Sa.
+- Chạy lại bộ kiểm thử chức năng của từng ứng dụng.
+- Kiểm tra lại chính tệp ZIP sau khi đóng gói và giải nén.
+
+KẾT QUẢ
+- Trang chọn chung: 43/43 kiểm tra đạt.
+- GeoĐàNẵng v5.3: 53/53 kiểm tra đạt.
+- GeoViệtNam v1.3: 62/62 kiểm tra đạt.
+- Hai thư mục Geo thành phần không có khác biệt khi đối chiếu byte theo byte với bản v3.
+- Không phát hiện liên kết thiếu, ID trùng, tài nguyên ngoài hoặc lỗi chạy trong trang chọn chung.
+- Trạng thái tệp ZIP: kiểm tra sau khi đóng gói và giải nén lại, đạt.

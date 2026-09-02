@@ -2,168 +2,868 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#8f0611">
-  <meta name="description" content="GeoAtlas Việt Nam – cổng học liệu Địa lí số 2026">
-  <title>GeoAtlas Việt Nam 2026</title>
-  <link rel="icon" type="image/svg+xml" href="assets/vietnam-flag-mark.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#8d0712">
+  <meta name="description" content="Cổng học liệu địa lí số: chọn khám phá GeoĐàNẵng hoặc GeoViệtNam.">
+  <title>GeoAtlas 2026 | Chọn không gian khám phá</title>
+  <link rel="preload" href="assets/earth-hero-v3.png" as="image">
   <style>
-    :root{
-      --red-950:#4d0008;
-      --red-900:#69000b;
-      --red-800:#920914;
-      --red-700:#bb1220;
-      --gold:#ffd85a;
-      --gold-2:#ffb71b;
-      --cream:#fff9df;
-      --white:#fff;
-      --scene-x:0px;
-      --scene-y:0px;
-      --flag-x:0px;
-      --flag-y:0px;
-      --tag-x:0px;
-      --tag-y:0px;
+    :root {
+      --red-950: #390006;
+      --red-900: #580009;
+      --red-800: #7e0711;
+      --red-700: #a70b16;
+      --gold-500: #f5b927;
+      --gold-300: #ffdc68;
+      --cream: #fff9e9;
+      --ink: #31070a;
+      --px: 0;
+      --py: 0;
     }
-    *{box-sizing:border-box}
-    html{min-width:320px;background:var(--red-950)}
-    body{margin:0;min-height:100svh;overflow-x:hidden;background:radial-gradient(circle at 50% 44%,rgba(255,118,35,.27),transparent 34%),radial-gradient(circle at 12% 18%,rgba(255,214,67,.12),transparent 22%),linear-gradient(145deg,#520008 0%,#850812 50%,#b21620 100%);color:var(--cream);font-family:"Be Vietnam Pro","Segoe UI",sans-serif}
-    a{color:inherit}
-    .portal{position:relative;isolation:isolate;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
-    .portal:before{content:"";position:absolute;z-index:-5;inset:0;background-image:linear-gradient(rgba(255,221,105,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,221,105,.035) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at center,#000,transparent 76%)}
-    .aurora{position:absolute;z-index:-4;border-radius:50%;filter:blur(70px);pointer-events:none;animation:aurora 9s ease-in-out infinite alternate}
-    .aurora.one{width:420px;height:420px;left:-180px;top:18%;background:rgba(255,170,26,.19)}
-    .aurora.two{width:520px;height:520px;right:-250px;bottom:-190px;background:rgba(255,65,52,.26);animation-delay:-4s}
-    .starfield,.starfield:before,.starfield:after{position:absolute;inset:0;pointer-events:none;background-repeat:no-repeat}
-    .starfield{z-index:-2;background-image:radial-gradient(circle,#ffe36b 0 1.6px,transparent 2px),radial-gradient(circle,#fff3bb 0 1px,transparent 1.8px),radial-gradient(circle,#ffd13d 0 1.2px,transparent 2px);background-position:7% 27%,88% 19%,74% 77%;animation:star-drift 12s ease-in-out infinite alternate}
-    .starfield:before{content:"";background-image:radial-gradient(circle,#fff1a2 0 1.4px,transparent 2px),radial-gradient(circle,#ffd13d 0 1px,transparent 2px),radial-gradient(circle,#fff8d8 0 1.2px,transparent 2px);background-position:19% 73%,94% 53%,36% 20%;filter:drop-shadow(0 0 7px #ffd43d)}
-    .starfield:after{content:"";background-image:radial-gradient(circle,#ffd13d 0 1.2px,transparent 2px),radial-gradient(circle,#fff5bd 0 1px,transparent 2px);background-position:60% 13%,48% 84%;filter:drop-shadow(0 0 8px #ffc928)}
-    .site-head{min-height:68px;display:flex;align-items:center;justify-content:center;padding:13px 24px}
-    .identity{display:inline-flex;align-items:center;justify-content:center;gap:12px;text-align:center;white-space:nowrap}
-    .identity img{width:52px;height:40px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(27,0,0,.28));animation:flag-float 3.8s ease-in-out infinite}
-    .identity strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:clamp(22px,2.15vw,32px);line-height:1;color:#fffbe8;text-shadow:0 3px 18px rgba(0,0,0,.25)}
-    .identity small{display:block;margin-top:5px;color:rgba(255,244,193,.75);font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
-    main{width:min(1080px,calc(100% - 32px));margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px 0 18px}
-    .eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:0;border:1px solid rgba(255,216,90,.32);border-radius:999px;background:rgba(81,0,8,.34);box-shadow:inset 0 1px rgba(255,255,255,.08);padding:7px 14px;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;white-space:nowrap}
-    .eyebrow:before,.eyebrow:after{content:"";width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-    .eyebrow:after{transform:scaleX(-1)}
-    h1{margin:15px 0 7px;font-family:"Playfair Display",Georgia,serif;font-size:clamp(26px,5.2vw,72px);font-weight:700;line-height:1.02;letter-spacing:-.045em;white-space:nowrap;text-align:center;text-shadow:0 5px 30px rgba(39,0,0,.38)}
-    h1 em{color:var(--gold);font-weight:700}
-    .intro{max-width:740px;margin:0 auto;color:rgba(255,247,216,.78);font-size:clamp(12px,1.2vw,16px);line-height:1.55;text-align:center;text-wrap:balance}
-    .scene{--scene-size:clamp(238px,30vh,330px);position:relative;width:min(780px,100%);height:var(--scene-size);margin:3px auto 2px;display:grid;place-items:center;perspective:1000px;transform:translate3d(var(--scene-x),var(--scene-y),0);transition:transform .35s ease-out}
-    .scene-glow{position:absolute;width:calc(var(--scene-size)*1.08);height:calc(var(--scene-size)*1.08);border-radius:50%;background:radial-gradient(circle,rgba(255,188,54,.3),rgba(255,75,30,.09) 43%,transparent 70%);filter:blur(13px);animation:pulse 4.4s ease-in-out infinite}
-    .orbit{position:absolute;width:calc(var(--scene-size)*1.32);height:calc(var(--scene-size)*.55);border:1px solid rgba(255,213,85,.36);border-radius:50%;transform:rotate(-11deg);filter:drop-shadow(0 0 7px rgba(255,199,62,.2));animation:orbit-wobble 8s ease-in-out infinite}
-    .orbit:before{content:"";position:absolute;width:10px;height:10px;left:9%;top:36%;border-radius:50%;background:#ffe36b;box-shadow:0 0 8px #ffd43d,0 0 20px #ff8d2e;animation:orbital-light 5s ease-in-out infinite alternate}
-    .orbit.back{width:calc(var(--scene-size)*1.16);height:calc(var(--scene-size)*.94);opacity:.42;transform:rotate(63deg);animation-duration:11s;animation-direction:reverse}
-    .earth-bob{position:relative;width:var(--scene-size);height:var(--scene-size);display:grid;place-items:center;animation:earth-bob 5.8s ease-in-out infinite;filter:drop-shadow(0 28px 38px rgba(31,0,0,.44))}
-    .earth-disc{position:relative;width:86%;height:86%;overflow:hidden;border:1px solid rgba(255,229,143,.38);border-radius:50%;background:#0a3348;box-shadow:0 0 0 12px rgba(255,193,44,.035),0 0 55px rgba(255,146,31,.34)}
-    .earth-disc img{width:100%;height:100%;object-fit:cover;display:block;animation:earth-turn 26s linear infinite;will-change:transform}
-    .earth-disc:after{content:"";position:absolute;inset:-1px;border-radius:50%;background:radial-gradient(circle at 29% 22%,rgba(255,255,255,.26),transparent 22%),linear-gradient(96deg,transparent 50%,rgba(0,13,30,.43) 85%);box-shadow:inset -18px -9px 35px rgba(0,8,25,.38);pointer-events:none}
-    .flag{position:absolute;z-index:4;left:16%;top:12%;width:118px;height:82px;transform:translate3d(var(--flag-x),var(--flag-y),40px);filter:drop-shadow(0 13px 17px rgba(31,0,0,.42));transition:transform .35s ease-out}
-    .flag-pole{position:absolute;left:0;top:-10px;width:4px;height:106px;border-radius:5px;background:linear-gradient(90deg,#9b5b16,#ffe096,#8b4a0c);box-shadow:0 0 9px rgba(255,212,91,.35)}
-    .flag-sheet{position:absolute;left:4px;top:0;width:103px;height:63px;display:grid;place-items:center;overflow:hidden;border-radius:0 5px 5px 0;background:linear-gradient(100deg,#b60715 0%,#f22b31 45%,#c20817 100%);clip-path:polygon(0 0,100% 4%,96% 52%,100% 96%,0 100%);transform-origin:left center;animation:flag-wave 2.9s ease-in-out infinite}
-    .flag-sheet:after{content:"";position:absolute;inset:-20% -30%;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.22) 49%,transparent 61%);animation:flag-shine 2.9s ease-in-out infinite}
-    .flag-star{position:relative;z-index:2;color:#ffe02f;font-size:33px;line-height:1;text-shadow:0 2px 5px rgba(98,0,0,.35)}
-    .vietnam-tag{position:absolute;z-index:4;right:11%;bottom:13%;min-width:172px;border:1px solid rgba(255,216,90,.38);border-radius:14px;background:rgba(83,0,8,.72);backdrop-filter:blur(12px);padding:9px 13px;text-align:center;box-shadow:0 14px 28px rgba(36,0,0,.27);transform:translate3d(var(--tag-x),var(--tag-y),55px);transition:transform .35s ease-out}
-    .vietnam-tag strong{display:block;color:var(--gold);font-family:"Playfair Display",Georgia,serif;font-size:14px;white-space:nowrap}
-    .vietnam-tag span{display:block;margin-top:2px;color:rgba(255,246,208,.72);font-size:9px;white-space:nowrap}
-    .choices{width:min(800px,100%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 auto}
-    .choice{min-height:106px;display:grid;grid-template-columns:64px minmax(0,1fr) 35px;align-items:center;gap:13px;border-radius:24px;padding:16px 18px;text-decoration:none;text-align:center;box-shadow:0 17px 34px rgba(41,0,0,.3),inset 0 1px rgba(255,255,255,.4);transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;position:relative;overflow:hidden}
-    .choice:before{content:"";position:absolute;inset:-50% auto -50% -40%;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.27),transparent);transform:skewX(-18deg) translateX(-180%);transition:transform .7s ease}
-    .choice:hover:before,.choice:focus-visible:before{transform:skewX(-18deg) translateX(470%)}
-    .choice:hover,.choice:focus-visible{transform:translateY(-5px) scale(1.012);box-shadow:0 24px 44px rgba(35,0,0,.4);outline:0}
-    .choice-danang{border:1px solid #ffe08a;background:linear-gradient(135deg,#ffd965,#ffb52a);color:#5a2400}
-    .choice-vietnam{border:1px solid #ff6570;background:linear-gradient(135deg,#d61325,#960812);color:#fff9df}
-    .choice-mark{width:62px;height:62px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:18px;background:rgba(255,255,255,.22);box-shadow:inset 0 1px rgba(255,255,255,.43)}
-    .choice-mark img{width:50px;height:50px;object-fit:contain;filter:drop-shadow(0 5px 7px rgba(71,0,0,.24))}
-    .choice-copy{text-align:center;min-width:0}
-    .choice-copy small{display:block;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.72;white-space:nowrap}
-    .choice-copy strong{display:block;margin-top:3px;font-family:"Playfair Display",Georgia,serif;font-size:clamp(22px,2.25vw,30px);line-height:1.05;white-space:nowrap}
-    .choice-arrow{width:35px;height:35px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.23);font-size:18px;font-weight:800;transition:transform .22s ease}
-    .choice:hover .choice-arrow{transform:translateX(3px)}
-    footer{padding:8px 16px 13px;text-align:center;color:rgba(255,240,188,.45);font-size:8px;letter-spacing:.08em}
-    @keyframes earth-turn{to{transform:rotate(360deg)}}
-    @keyframes earth-bob{0%,100%{transform:translateY(5px) rotateX(0)}50%{transform:translateY(-8px) rotateX(2deg)}}
-    @keyframes orbit-wobble{0%,100%{transform:rotate(-11deg) scale(1)}50%{transform:rotate(-6deg) scale(1.035)}}
-    @keyframes orbital-light{to{transform:translate(14px,-14px) scale(1.25)}}
-    @keyframes pulse{0%,100%{opacity:.65;transform:scale(.94)}50%{opacity:1;transform:scale(1.07)}}
-    @keyframes flag-wave{0%,100%{transform:perspective(280px) rotateY(0deg) skewY(-1deg)}50%{transform:perspective(280px) rotateY(-14deg) skewY(2deg) scaleX(.96)}}
-    @keyframes flag-shine{0%,100%{transform:translateX(-30%)}50%{transform:translateX(45%)}}
-    @keyframes flag-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-3px) rotate(1deg)}}
-    @keyframes star-drift{to{transform:translate3d(8px,-7px,0)}}
-    @keyframes aurora{to{transform:translate(35px,-20px) scale(1.08)}}
-    @media(max-height:760px) and (min-width:701px){.site-head{min-height:58px;padding:9px}.identity img{width:46px;height:35px}.identity small{display:none}main{padding-top:0}.eyebrow{padding:5px 12px}h1{margin-top:10px}.scene{--scene-size:clamp(215px,28vh,260px)}.choices{max-width:760px}.choice{min-height:92px;padding:12px 16px}.choice-mark{width:54px;height:54px}.choice-mark img{width:43px;height:43px}footer{padding:5px}}
-    @media(max-width:700px){.site-head{min-height:60px;padding:10px 12px}.identity{gap:9px}.identity img{width:44px;height:34px}.identity small{font-size:7px}.eyebrow{font-size:8px;letter-spacing:.12em;padding:6px 10px}.eyebrow:before,.eyebrow:after{width:12px}h1{font-size:clamp(24px,7.25vw,42px);letter-spacing:-.05em}.intro{max-width:480px}.scene{--scene-size:clamp(218px,34vh,286px);margin-top:3px}.flag{left:5%;top:15%;width:94px;transform:scale(.82) translate3d(var(--flag-x),var(--flag-y),30px);transform-origin:left top}.vietnam-tag{right:2%;bottom:12%;min-width:146px;padding:7px 9px}.vietnam-tag strong{font-size:12px}.vietnam-tag span{font-size:8px}.choices{grid-template-columns:1fr;max-width:430px;gap:10px}.choice{min-height:84px;grid-template-columns:52px 1fr 32px;padding:11px 14px;border-radius:20px}.choice-mark{width:50px;height:50px;border-radius:15px}.choice-mark img{width:41px;height:41px}.choice-copy strong{font-size:23px}.choice-arrow{width:32px;height:32px}footer{padding-top:11px}}
-    @media(max-width:420px){main{width:calc(100% - 20px);padding-top:2px}.identity strong{font-size:20px}.identity small{letter-spacing:.12em}h1{font-size:clamp(23px,7vw,29px)}.intro{font-size:11px}.scene{--scene-size:clamp(205px,31vh,246px)}.flag{left:0;top:17%;transform:scale(.7)}.vietnam-tag{right:0;bottom:11%;min-width:128px}.vietnam-tag strong{font-size:11px}.vietnam-tag span{display:none}.choice-copy small{font-size:8px}.choice-copy strong{font-size:21px}}
-    @media(prefers-reduced-motion:reduce){.aurora,.starfield,.identity img,.scene-glow,.orbit,.orbit:before,.earth-bob,.flag-sheet,.flag-sheet:after{animation-duration:18s}.choice{transition-duration:.01ms}.scene,.flag,.vietnam-tag{transition:none}}
+
+    * { box-sizing: border-box; }
+
+    html { min-width: 320px; background: var(--red-950); }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow-x: hidden;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 79% 42%, rgba(255, 205, 71, .17), transparent 25rem),
+        radial-gradient(circle at 12% 8%, rgba(239, 55, 52, .34), transparent 27rem),
+        linear-gradient(135deg, #3b0006 0%, #790811 48%, #a80e18 100%);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .27;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 74px 74px;
+      -webkit-mask-image: radial-gradient(circle at 72% 48%, #000, transparent 74%);
+      mask-image: radial-gradient(circle at 72% 48%, #000, transparent 74%);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 99;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      color: var(--ink);
+      background: #fff;
+      border-radius: 10px;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .stage {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+
+    .light-ribbon {
+      position: absolute;
+      z-index: -1;
+      width: 80vw;
+      height: 25vw;
+      left: -17vw;
+      top: 44%;
+      border: 1px solid rgba(255, 220, 104, .3);
+      border-radius: 50%;
+      transform: rotate(-14deg);
+      box-shadow: 0 0 60px rgba(245, 185, 39, .1), inset 0 0 55px rgba(255, 220, 104, .05);
+    }
+
+    .light-ribbon::after {
+      content: "";
+      position: absolute;
+      inset: 9% -3%;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: inherit;
+    }
+
+    .stars { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #ffe89a;
+      box-shadow: 0 0 9px 2px rgba(255, 222, 108, .44);
+      animation: twinkle var(--twinkle, 4s) ease-in-out infinite alternate;
+    }
+
+    .topbar {
+      width: min(1440px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .flag-wrap {
+      width: 72px;
+      perspective: 220px;
+      filter: drop-shadow(0 10px 14px rgba(31,0,3,.34));
+    }
+
+    .flag {
+      display: block;
+      width: 100%;
+      transform-origin: 13% 50%;
+      animation: flag-wave 3.6s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .brand-copy { line-height: 1.08; }
+
+    .brand-name {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.28rem, 2vw, 1.72rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-tag {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255,249,233,.7);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .year-pill {
+      flex: none;
+      padding: 9px 14px;
+      border: 1px solid rgba(255,222,104,.33);
+      border-radius: 999px;
+      color: var(--gold-300);
+      background: rgba(57,0,6,.28);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    main {
+      position: relative;
+      width: min(1440px, calc(100% - 48px));
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(390px, .98fr);
+      align-items: center;
+      gap: clamp(36px, 6vw, 96px);
+      padding: 28px 0 42px;
+    }
+
+    .intro {
+      position: relative;
+      z-index: 2;
+      transform: translate3d(calc(var(--px) * -5px), calc(var(--py) * -3px), 0);
+      transition: transform .16s linear;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 17px;
+      color: var(--gold-300);
+      font-size: clamp(.73rem, 1.2vw, .87rem);
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-500), #fff0a8);
+      box-shadow: 0 0 12px rgba(255,220,104,.65);
+    }
+
+    h1 {
+      max-width: 770px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.25rem, 6.25vw, 6.75rem);
+      line-height: .91;
+      letter-spacing: -.065em;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: .12em;
+      color: var(--gold-300);
+      font-style: italic;
+      font-weight: 500;
+      text-shadow: 0 8px 34px rgba(255, 200, 55, .17);
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 24px 0 26px;
+      color: rgba(255,249,233,.78);
+      font-size: clamp(.99rem, 1.42vw, 1.15rem);
+      line-height: 1.7;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      max-width: 690px;
+    }
+
+    .geo-choice {
+      position: relative;
+      min-height: 144px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 76px 1fr 32px;
+      align-items: center;
+      gap: 13px;
+      padding: 20px;
+      border-radius: 24px;
+      text-decoration: none;
+      transform: translateY(0);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .geo-choice::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 22%, rgba(255,255,255,.27) 46%, transparent 68%);
+      transform: translateX(-140%);
+      transition: transform .75s ease;
+      pointer-events: none;
+    }
+
+    .geo-choice:hover,
+    .geo-choice:focus-visible {
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    .geo-choice:hover::before,
+    .geo-choice:focus-visible::before { transform: translateX(140%); }
+
+    .geo-choice.danang {
+      color: #4b2300;
+      border: 1px solid rgba(255,239,174,.7);
+      background: linear-gradient(135deg, #ffd766, #f2a91f);
+      box-shadow: 0 18px 36px rgba(56,0,3,.3), inset 0 1px rgba(255,255,255,.7);
+    }
+
+    .geo-choice.danang:hover,
+    .geo-choice.danang:focus-visible { box-shadow: 0 24px 44px rgba(46,0,3,.43), 0 0 0 4px rgba(255,220,104,.18); }
+
+    .geo-choice.vietnam {
+      color: #fff9e9;
+      border: 1px solid rgba(255,220,104,.46);
+      background: linear-gradient(135deg, #c51723, #79040d 88%);
+      box-shadow: 0 18px 36px rgba(44,0,3,.42), inset 0 1px rgba(255,255,255,.2);
+    }
+
+    .geo-choice.vietnam:hover,
+    .geo-choice.vietnam:focus-visible { box-shadow: 0 24px 44px rgba(41,0,2,.55), 0 0 0 4px rgba(235,46,50,.24); }
+
+    .choice-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      border-radius: 21px;
+      background: rgba(255,255,255,.24);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.33);
+    }
+
+    .choice-icon img { display: block; width: 65px; height: 65px; object-fit: contain; }
+    .vietnam .choice-icon img { width: 57px; height: 67px; object-fit: cover; object-position: 50% 50%; border-radius: 12px; }
+
+    .choice-copy { position: relative; z-index: 1; min-width: 0; }
+
+    .choice-kicker {
+      display: block;
+      margin-bottom: 6px;
+      opacity: .72;
+      font-size: .68rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .choice-name {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.28rem, 1.8vw, 1.62rem);
+      font-weight: 800;
+      letter-spacing: -.025em;
+      line-height: 1.08;
+    }
+
+    .choice-desc {
+      display: block;
+      margin-top: 7px;
+      opacity: .78;
+      font-size: .75rem;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .choice-arrow {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      font-size: 1.2rem;
+      transition: transform .25s ease;
+    }
+
+    .geo-choice:hover .choice-arrow,
+    .geo-choice:focus-visible .choice-arrow { transform: translateX(4px); }
+
+    .world {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 1;
+      width: min(45vw, 650px);
+      justify-self: end;
+      transform-style: preserve-3d;
+      transform: translate3d(calc(var(--px) * 9px), calc(var(--py) * 7px), 0);
+      transition: transform .16s linear;
+    }
+
+    .halo,
+    .orbit {
+      position: absolute;
+      inset: 3%;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .halo {
+      background: radial-gradient(circle, rgba(255,209,72,.23), rgba(255,209,72,.04) 51%, transparent 71%);
+      filter: blur(9px);
+      animation: halo-pulse 5s ease-in-out infinite;
+    }
+
+    .orbit {
+      inset: 9%;
+      border: 1px solid rgba(255,225,121,.32);
+      transform: rotate(-17deg) scaleY(.42);
+      box-shadow: 0 0 16px rgba(255,215,96,.13);
+      animation: orbit-drift 13s linear infinite;
+    }
+
+    .orbit.two {
+      inset: 0;
+      border-color: rgba(255,255,255,.14);
+      transform: rotate(48deg) scaleY(.72);
+      animation-duration: 21s;
+      animation-direction: reverse;
+    }
+
+    .orbit::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold-300);
+      box-shadow: 0 0 15px 4px rgba(255,220,104,.62);
+    }
+
+    .globe-shell {
+      position: absolute;
+      inset: 13%;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #063d5b;
+      box-shadow:
+        -20px 28px 58px rgba(30,0,2,.43),
+        0 0 0 1px rgba(255,236,169,.38),
+        0 0 60px rgba(255,202,58,.16);
+      animation: globe-float 6.5s ease-in-out infinite;
+    }
+
+    .globe-shell::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 31% 24%, rgba(255,255,255,.28), transparent 24%),
+        linear-gradient(108deg, rgba(255,255,255,.12), transparent 38%, rgba(24,0,2,.34) 77%);
+      box-shadow: inset -30px -13px 40px rgba(25,0,3,.35), inset 13px 7px 30px rgba(255,238,177,.12);
+      pointer-events: none;
+    }
+
+    .earth {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.12);
+      animation: earth-turn 38s linear infinite;
+      will-change: transform;
+    }
+
+    .globe-grid {
+      position: absolute;
+      z-index: 3;
+      inset: 16%;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      opacity: .55;
+      background:
+        linear-gradient(transparent 49.6%, rgba(255,255,255,.18) 50%, transparent 50.4%),
+        linear-gradient(90deg, transparent 49.6%, rgba(255,255,255,.15) 50%, transparent 50.4%);
+      pointer-events: none;
+    }
+
+    .globe-grid::before,
+    .globe-grid::after {
+      content: "";
+      position: absolute;
+      inset: 14% 0;
+      border-top: 1px solid rgba(255,255,255,.16);
+      border-bottom: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+    }
+
+    .globe-grid::after { inset: 0 24%; border: 1px solid rgba(255,255,255,.14); }
+
+    .world-label {
+      position: absolute;
+      z-index: 5;
+      right: 3%;
+      bottom: 17%;
+      max-width: 225px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255,220,104,.35);
+      border-radius: 16px;
+      color: #fff9e9;
+      background: rgba(59,0,6,.72);
+      box-shadow: 0 15px 30px rgba(34,0,2,.25);
+      backdrop-filter: blur(14px);
+      animation: label-float 5.3s ease-in-out infinite reverse;
+    }
+
+    .world-label strong {
+      display: block;
+      color: var(--gold-300);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+    }
+
+    .world-label span { display: block; margin-top: 4px; opacity: .72; font-size: .7rem; line-height: 1.35; }
+
+    footer {
+      width: min(1440px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 10px 0 18px;
+      color: rgba(255,249,233,.47);
+      font-size: .7rem;
+      letter-spacing: .025em;
+      text-align: center;
+    }
+
+    @keyframes flag-wave {
+      0%, 100% { transform: rotateY(-8deg) skewY(-1deg) translateY(0); }
+      50% { transform: rotateY(15deg) skewY(2deg) translateY(-2px); }
+    }
+
+    @keyframes twinkle { from { opacity: .15; transform: scale(.65); } to { opacity: .9; transform: scale(1.45); } }
+    @keyframes halo-pulse { 0%, 100% { opacity: .62; transform: scale(.96); } 50% { opacity: 1; transform: scale(1.04); } }
+    @keyframes orbit-drift { to { rotate: 360deg; } }
+    @keyframes globe-float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-13px) rotate(1deg); } }
+    @keyframes earth-turn { to { transform: scale(1.12) rotate(360deg); } }
+    @keyframes label-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    @media (max-width: 1080px) {
+      main { grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 25px; }
+      .choices { grid-template-columns: 1fr; max-width: 480px; }
+      .geo-choice { min-height: 112px; grid-template-columns: 64px 1fr 32px; padding: 15px; }
+      .choice-icon { width: 64px; height: 64px; border-radius: 18px; }
+      .choice-icon img { width: 57px; height: 57px; }
+    }
+
+    @media (max-width: 760px) {
+      body::before { background-size: 54px 54px; }
+      .topbar, main, footer { width: min(100% - 30px, 620px); }
+      .topbar { padding-top: 14px; }
+      .flag-wrap { width: 58px; }
+      .brand-tag { letter-spacing: .1em; }
+      .year-pill { display: none; }
+      main { grid-template-columns: 1fr; gap: 5px; padding: 18px 0 28px; }
+      .intro { text-align: center; }
+      .eyebrow { margin-bottom: 12px; }
+      .eyebrow::before { display: none; }
+      h1 { margin-inline: auto; font-size: clamp(3rem, 15vw, 5rem); line-height: .93; }
+      .lead { margin: 18px auto 21px; font-size: .94rem; line-height: 1.58; }
+      .choices { margin-inline: auto; text-align: left; }
+      .world { grid-row: 1; width: min(87vw, 390px); justify-self: center; margin: -35px 0 -64px; z-index: 0; opacity: .69; }
+      .world-label { display: none; }
+      .globe-shell { inset: 17%; }
+      .globe-grid { inset: 20%; }
+      footer { padding-bottom: max(15px, env(safe-area-inset-bottom)); line-height: 1.45; }
+    }
+
+    @media (max-width: 390px) {
+      .brand-name { font-size: 1.17rem; }
+      .brand-tag { font-size: .61rem; }
+      .flag-wrap { width: 52px; }
+      h1 { font-size: 2.82rem; }
+      .lead { font-size: .88rem; }
+      .geo-choice { grid-template-columns: 57px 1fr 27px; gap: 10px; padding: 13px; border-radius: 20px; }
+      .choice-icon { width: 57px; height: 57px; }
+      .choice-icon img { width: 50px; height: 50px; }
+      .choice-name { font-size: 1.2rem; }
+      .choice-desc { font-size: .7rem; }
+      .choice-arrow { width: 27px; height: 27px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+      .intro, .world { transform: none !important; }
+    }
+
+    /* Bố cục vừa một màn hình, không chồng lấn và không cần thanh cuộn */
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      scrollbar-width: none;
+    }
+
+    body::-webkit-scrollbar { display: none; }
+
+    .stage {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .topbar {
+      justify-content: center;
+      flex-wrap: nowrap;
+      padding: 12px 0 5px;
+      text-align: center;
+    }
+
+    .brand-copy { text-align: center; }
+
+    main {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      justify-items: center;
+      align-content: center;
+      width: min(1440px, calc(100% - 48px));
+      height: 100%;
+      min-height: 0;
+      margin: 0 auto;
+      gap: 3px;
+      padding: 0 0 4px;
+      text-align: center;
+    }
+
+    .world {
+      grid-row: 1;
+      width: min(27vh, 22vw, 250px);
+      justify-self: center;
+      margin: 0 auto;
+      transform: translate3d(calc(var(--px) * 7px), calc(var(--py) * 5px), 0);
+    }
+
+    .world-label { display: none; }
+
+    .intro {
+      grid-row: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .eyebrow {
+      justify-content: center;
+      margin: 0 0 9px;
+    }
+
+    h1 {
+      max-width: none;
+      font-size: clamp(2rem, min(4.25vw, 7vh), 4.6rem);
+      line-height: 1;
+      white-space: nowrap;
+      color: transparent;
+      background: linear-gradient(95deg, #fff9e9 7%, #ffdf72 52%, #fff9e9 93%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 8px 28px rgba(255, 197, 43, .15));
+    }
+
+    .lead {
+      max-width: 1200px;
+      margin: 12px auto 14px;
+      font-size: clamp(.88rem, 1.15vw, 1.05rem);
+      line-height: 1.5;
+      text-align: center;
+      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    .choices {
+      width: min(760px, 100%);
+      max-width: 760px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-inline: auto;
+    }
+
+    .geo-choice {
+      min-height: 112px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 34px;
+    }
+
+    .choice-copy { text-align: center; }
+
+    .choice-icon { width: 62px; height: 62px; border-radius: 18px; }
+    .choice-icon img { width: 55px; height: 55px; }
+    .vietnam .choice-icon img { width: 49px; height: 55px; }
+    .choice-arrow { position: absolute; right: 17px; top: 50%; transform: translateY(-50%); }
+    .geo-choice:hover .choice-arrow,
+    .geo-choice:focus-visible .choice-arrow { transform: translate(4px, -50%); }
+
+    .earth {
+      animation: earth-turn-visible 10s linear infinite !important;
+    }
+
+    .globe-shell {
+      animation: globe-float 3.8s ease-in-out infinite !important;
+    }
+
+    .globe-shell::after {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      inset: -24%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0 58%, rgba(255, 230, 135, .28) 66%, transparent 74% 100%);
+      mix-blend-mode: screen;
+      animation: globe-sweep 4.5s linear infinite;
+      pointer-events: none;
+    }
+
+    .orbit { animation-duration: 6.5s; }
+    .orbit.two { animation-duration: 10s; }
+
+    footer {
+      padding: 5px 0 max(8px, env(safe-area-inset-bottom));
+      line-height: 1.35;
+    }
+
+    @keyframes earth-turn-visible {
+      from { transform: scale(1.12) rotate(0deg); }
+      to { transform: scale(1.12) rotate(360deg); }
+    }
+
+    @keyframes globe-sweep { to { transform: rotate(360deg); } }
+
+    @media (max-width: 1080px) {
+      .lead { max-width: 900px; white-space: normal; }
+    }
+
+    @media (max-width: 760px) {
+      .topbar, main, footer { width: min(calc(100% - 24px), 620px); }
+      .topbar { gap: 8px; padding: 7px 0 3px; }
+      main { gap: 2px; padding: 0; }
+      .world { width: min(24vh, 50vw, 190px); margin: 0 auto; opacity: .88; }
+      .intro { width: 100%; text-align: center; }
+      .eyebrow { margin: 0 0 7px; font-size: .64rem; letter-spacing: .1em; }
+      h1 { font-size: clamp(1.16rem, 5.85vw, 2rem); letter-spacing: -.045em; white-space: nowrap; }
+      .lead { max-width: 35rem; margin: 9px auto 11px; font-size: clamp(.73rem, 3.35vw, .84rem); line-height: 1.4; white-space: normal; }
+      .choices { grid-template-columns: 1fr; gap: 8px; width: min(100%, 460px); }
+      .geo-choice { min-height: 86px; gap: 3px; padding: 8px 38px; text-align: center; border-radius: 18px; }
+      .choice-copy { text-align: center; }
+      .choice-kicker { margin-bottom: 1px; font-size: .57rem; }
+      .choice-name { font-size: 1.15rem; }
+      .choice-desc { margin-top: 2px; font-size: .64rem; }
+      .choice-icon { width: 45px; height: 45px; border-radius: 14px; }
+      .choice-icon img { width: 40px; height: 40px; }
+      .vietnam .choice-icon img { width: 36px; height: 41px; }
+      .choice-arrow { right: 13px; width: 28px; height: 28px; }
+      footer { padding: 3px 0 max(6px, env(safe-area-inset-bottom)); font-size: .6rem; }
+    }
+
+    @media (max-width: 390px) {
+      .flag-wrap { width: 44px; }
+      .brand-name { font-size: 1.02rem; }
+      .brand-tag { margin-top: 3px; font-size: .54rem; }
+      .world { width: min(23vh, 48vw, 170px); margin: 0 auto; }
+      h1 { font-size: clamp(1.08rem, 5.8vw, 1.38rem); }
+      .lead { margin: 8px auto 10px; font-size: clamp(.69rem, 3.3vw, .78rem); }
+      .geo-choice { min-height: 80px; padding: 7px 35px; }
+    }
+
+    @media (max-height: 700px) and (min-width: 761px) {
+      .topbar { padding: 6px 0 2px; }
+      .flag-wrap { width: min(9vh, 62px); }
+      .brand-name { font-size: clamp(1.05rem, 3.5vh, 1.5rem); }
+      .brand-tag { margin-top: 3px; font-size: .62rem; }
+      main { gap: 1px; padding: 0; }
+      .world { width: min(20vh, 180px); }
+      h1 { font-size: clamp(1.8rem, min(4vw, 7vh), 3.4rem); }
+      .lead { margin: 8px auto 10px; font-size: .84rem; line-height: 1.35; }
+      .geo-choice { min-height: 88px; padding-block: 7px; }
+      .choice-icon { width: 48px; height: 48px; }
+      .choice-icon img { width: 43px; height: 43px; }
+      .vietnam .choice-icon img { width: 39px; height: 44px; }
+      footer { padding-block: 3px 5px; }
+    }
   </style>
 </head>
 <body>
-  <div class="portal">
-    <div class="aurora one" aria-hidden="true"></div>
-    <div class="aurora two" aria-hidden="true"></div>
-    <div class="starfield" aria-hidden="true"></div>
+  <a class="skip-link" href="#lua-chon">Đi đến phần lựa chọn</a>
+  <div class="stage">
+    <div class="light-ribbon" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true" id="stars"></div>
 
-    <header class="site-head">
-      <div class="identity">
-        <img src="assets/vietnam-flag-mark.svg" alt="Cờ Tổ quốc Việt Nam">
-        <span><strong>GeoAtlas Việt Nam</strong><small>Học liệu Địa lí số · 2026</small></span>
+    <header class="topbar" aria-label="Nhận diện GeoAtlas">
+      <div class="brand">
+        <div class="flag-wrap" aria-hidden="true">
+          <img class="flag" src="assets/vietnam-flag-mark.svg" alt="">
+        </div>
+        <div class="brand-copy">
+          <span class="brand-name">GeoAtlas Việt Nam</span>
+          <span class="brand-tag">Học liệu địa lí số</span>
+        </div>
       </div>
+      <div class="year-pill">Không gian học tập 2026</div>
     </header>
 
-    <main>
-      <section aria-labelledby="portal-title">
-        <p class="eyebrow">Cổng khám phá Địa lí số</p>
-        <h1 id="portal-title">Chọn không gian <em>khám phá</em></h1>
-        <p class="intro">Hai hành trình trực quan — từ chiều sâu Đà Nẵng đến bức tranh toàn cảnh Việt Nam.</p>
+    <main id="noi-dung">
+      <section class="intro" aria-labelledby="main-title">
+        <p class="eyebrow">Cổng khám phá địa lí số</p>
+        <h1 id="main-title">Chọn không gian khám phá.</h1>
+        <p class="lead">Hai hành trình trực quan — từ chiều sâu Đà Nẵng đến bức tranh toàn cảnh Việt Nam. Chọn một không gian để bắt đầu.</p>
+
+        <nav class="choices" id="lua-chon" aria-label="Chọn ứng dụng địa lí">
+          <a class="geo-choice danang" href="GEODANANG/index.html" aria-label="Mở GeoĐàNẵng">
+            <span class="choice-icon" aria-hidden="true"><img src="assets/dragon-bridge-mark.png" alt=""></span>
+            <span class="choice-copy">
+              <span class="choice-kicker">Không gian thành phố</span>
+              <span class="choice-name">GeoĐàNẵng</span>
+              <span class="choice-desc">Khám phá thành phố, bản đồ và dữ liệu địa lí</span>
+            </span>
+            <span class="choice-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="geo-choice vietnam" href="GEOVIETNAM/index.html" aria-label="Mở GeoViệtNam">
+            <span class="choice-icon" aria-hidden="true"><img src="assets/vietnam-atlas.svg" alt=""></span>
+            <span class="choice-copy">
+              <span class="choice-kicker">Không gian toàn quốc</span>
+              <span class="choice-name">GeoViệtNam</span>
+              <span class="choice-desc">Khám phá 34 tỉnh, thành phố và biển đảo Việt Nam</span>
+            </span>
+            <span class="choice-arrow" aria-hidden="true">→</span>
+          </a>
+        </nav>
       </section>
 
-      <div class="scene" aria-hidden="true">
-        <div class="scene-glow"></div>
-        <div class="orbit back"></div>
+      <div class="world" aria-hidden="true">
+        <div class="halo"></div>
         <div class="orbit"></div>
-        <div class="earth-bob"><div class="earth-disc"><img src="assets/earth-hero-v3.png" alt=""></div></div>
-        <div class="flag"><span class="flag-pole"></span><span class="flag-sheet"><span class="flag-star">★</span></span></div>
-        <div class="vietnam-tag"><strong>Việt Nam · Vươn ra thế giới</strong><span>Khám phá quê hương qua từng lớp bản đồ</span></div>
+        <div class="orbit two"></div>
+        <div class="globe-shell"><img class="earth" src="assets/earth-hero-v3.png" alt=""></div>
+        <div class="globe-grid"></div>
+        <div class="world-label"><strong>Việt Nam · vươn ra thế giới</strong><span>Từ địa phương đến toàn quốc, mỗi lớp bản đồ mở thêm một góc nhìn.</span></div>
       </div>
-
-      <nav class="choices" aria-label="Chọn không gian học tập">
-        <a class="choice choice-danang" href="./GeoDaNang/index.html">
-          <span class="choice-mark"><img src="assets/dragon-bridge-mark.png" alt=""></span>
-          <span class="choice-copy"><small>Không gian thành phố</small><strong>GeoĐàNẵng</strong></span>
-          <span class="choice-arrow" aria-hidden="true">→</span>
-        </a>
-        <a class="choice choice-vietnam" href="./GeoVietNam/index.html">
-          <span class="choice-mark"><img src="assets/vietnam-atlas.svg" alt=""></span>
-          <span class="choice-copy"><small>Không gian toàn quốc</small><strong>GeoViệtNam</strong></span>
-          <span class="choice-arrow" aria-hidden="true">→</span>
-        </a>
-      </nav>
     </main>
 
-    <footer>Đồng hành phát triển bởi: Thầy Hiếu · Giáo dục số 4.0 · 0812806887</footer>
+    <footer>Đồng hành phát triển bởi: Thầy Hiếu - Giáo dục số 4.0 · 0812806887</footer>
   </div>
+
   <script>
-    (()=>{
-      const scene=document.querySelector('.scene');
-      if(!scene||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-      let frame=0;
-      addEventListener('pointermove',event=>{
-        if(frame)return;
-        frame=requestAnimationFrame(()=>{
-          const x=(event.clientX/innerWidth-.5)*18;
-          const y=(event.clientY/innerHeight-.5)*14;
-          scene.style.setProperty('--scene-x',`${x*.12}px`);
-          scene.style.setProperty('--scene-y',`${y*.12}px`);
-          scene.style.setProperty('--flag-x',`${x*-.32}px`);
-          scene.style.setProperty('--flag-y',`${y*-.3}px`);
-          scene.style.setProperty('--tag-x',`${x*.28}px`);
-          scene.style.setProperty('--tag-y',`${y*.26}px`);
-          frame=0;
-        });
-      },{passive:true});
+    (() => {
+      const stars = document.getElementById('stars');
+      for (let i = 0; i < 26; i += 1) {
+        const star = document.createElement('i');
+        star.className = 'star';
+        star.style.left = `${(i * 37 + 11) % 97}%`;
+        star.style.top = `${(i * 61 + 7) % 91}%`;
+        star.style.setProperty('--twinkle', `${2.8 + (i % 6) * .55}s`);
+        star.style.animationDelay = `${-(i % 8) * .47}s`;
+        stars.appendChild(star);
+      }
+
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let frame = 0;
+        addEventListener('pointermove', (event) => {
+          if (frame) cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            const x = (event.clientX / innerWidth - .5) * 2;
+            const y = (event.clientY / innerHeight - .5) * 2;
+            document.documentElement.style.setProperty('--px', x.toFixed(3));
+            document.documentElement.style.setProperty('--py', y.toFixed(3));
+          });
+        }, { passive: true });
+      }
     })();
   </script>
 </body>
